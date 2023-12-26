@@ -3,6 +3,10 @@ import Book from '../domain/Book';
 import MusicAlbum from '../domain/MusicAlbum';
 import Movie from '../domain/Movie';
 
+const book = new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225);
+const album = new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900);
+const movie = new Movie(1010, 'Мстители', 'The Avengers', 2012, 'США', 'Avengers Assemble!', ['фантастика', 'боевик', 'фэнтези', 'приключения'], 137, 2500);
+
 test('new cart should be empty', () => {
   const cart = new Cart();
 
@@ -11,27 +15,27 @@ test('new cart should be empty', () => {
 
 test('should return correct total cost', () => {
   const cart = new Cart();
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
-  cart.add(new Movie(1010, 'Мстители', 'The Avengers', 2012, 'США', 'Avengers Assemble!', ['фантастика', 'боевик', 'фэнтези', 'приключения'], 137, 2500));
+  cart.add(book);
+  cart.add(album);
+  cart.add(movie);
 
   expect(cart.totalCost()).toBe(5400);
 });
 
 test('should return correct discounted total cost', () => {
   const cart = new Cart();
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
-  cart.add(new Movie(1010, 'Мстители', 'The Avengers', 2012, 'США', 'Avengers Assemble!', ['фантастика', 'боевик', 'фэнтези', 'приключения'], 137, 2500));
+  cart.add(book);
+  cart.add(album);
+  cart.add(movie);
 
   expect(cart.discountedTotalCost(10)).toBe(4860);
 });
 
-test('should remove item from cart by id', () => {
+test('should remove an item from the cart by id', () => {
   const cart = new Cart();
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
-  cart.add(new Movie(1010, 'Мстители', 'The Avengers', 2012, 'США', 'Avengers Assemble!', ['фантастика', 'боевик', 'фэнтези', 'приключения'], 137, 2500));
+  cart.add(book);
+  cart.add(album);
+  cart.add(movie);
   
   expect(cart.items.length).toBe(3);
   
@@ -41,9 +45,9 @@ test('should remove item from cart by id', () => {
 
 test('removing an item from the cart with a non-existent id', () => {
   const cart = new Cart();
-  cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
-  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
-  cart.add(new Movie(1010, 'Мстители', 'The Avengers', 2012, 'США', 'Avengers Assemble!', ['фантастика', 'боевик', 'фэнтези', 'приключения'], 137, 2500));
+  cart.add(book);
+  cart.add(album);
+  cart.add(movie);
   
   expect(cart.items.length).toBe(3);
   
